@@ -3,7 +3,7 @@ import pyttsx3
 import datetime
 import pywhatkit
 import wikipedia
-from independent_data import independent_datasets
+from independent_data import club_info, depermant_info, admission_info
 
 
 listener = sr.Recognizer()
@@ -54,49 +54,49 @@ def run_urro():
             talk(pt)
     elif 'department' in commend:
             if ('department' and 'how') in commend:
-                pt = independent_datasets['department']
+                pt = depermant_info['department']
                 print(pt)
                 talk(pt)
             elif 'cse department' in commend:
-                pt = independent_datasets['cse']
+                pt = depermant_info['cse']
                 print(pt)
                 talk(pt)
             elif 'bba department' in commend:
-                pt = independent_datasets['bba']
+                pt = depermant_info['bba']
                 print(pt)
                 talk(pt)
             elif 'pharmacy department' in commend:
-                pt = independent_datasets['pharmacy']
+                pt = depermant_info['pharmacy']
                 print(pt)
                 talk(pt)
     elif 'admission' in commend:
             if 'graduate' in commend:
-                pt = independent_datasets['graduate']
+                pt = admission_info['graduate']
                 print(pt)
                 talk(pt)
             else:
-                pt = independent_datasets['Undergraduate']
+                pt = admission_info['Undergraduate']
                 print(pt)
                 talk(pt)
     elif 'club' in commend:
             if 'cse club' in commend:
-                pt = independent_datasets['cse club']
+                pt = club_info['cse club']
                 print(pt)
                 talk(pt)
             elif 'bba club' in commend:
-                pt = independent_datasets['bba club']
+                pt = club_info['bba club']
                 print(pt)
                 talk(pt)
             elif 'Pharmacy club' in commend:
-                pt = independent_datasets['Pharmacy club']
+                pt = club_info['Pharmacy club']
                 print(pt)
                 talk(pt)
             elif ('club' and 'how') in commend:
-                pt = independent_datasets['club']
+                pt = club_info['club']
                 print(pt)
                 talk(pt)
     elif 'financial' in commend:
-        pt = independent_datasets['Financial discount']
+        pt = club_info['Financial discount']
         print(pt)
         talk(pt)
     elif 'stop' in commend:
