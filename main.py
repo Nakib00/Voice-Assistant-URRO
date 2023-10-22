@@ -3,7 +3,7 @@ import pyttsx3
 import datetime
 import pywhatkit
 import wikipedia
-from independent_data import club_info, depermant_info, admission_info
+from independent_data import club_info, depermant_info, admission_info, lab_info, school_info
 
 
 listener = sr.Recognizer()
@@ -99,6 +99,37 @@ def run_urro():
         pt = club_info['Financial discount']
         print(pt)
         talk(pt)
+    elif 'lab' in commend:
+        if ('lab' and 'how'):
+            pt = lab_info['lab']
+            print(pt)
+            talk(pt)
+    elif 'school' in commend:
+        if ('school' and 'how') in commend:
+            pt = school_info['school']
+            print(pt)
+            talk(pt)
+        elif ('Pharmacy' or 'Public Health' or 'spph') in commend:
+            pt = school_info['spph']
+            print(pt)
+            talk(pt)
+        elif ('sbe' or 'business' or 'entrepreneurship'):
+            pt = school_info['sbe']
+            print(pt)
+            talk(pt)
+        elif ('sets' or 'engineering' or 'technology'):
+            pt = school_info['sets']
+            print(pt)
+            talk(pt)
+        elif ('sels' or 'environment' or 'life sciences'):
+            pt = school_info['sels']
+            print(pt)
+            talk(pt)
+        elif ('slass' or 'liberal' or 'art'):
+            pt = school_info['slass']
+            print(pt)
+            talk(pt)
+        
     elif 'stop' in commend:
         exit()
     else:

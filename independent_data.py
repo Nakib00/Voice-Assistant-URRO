@@ -29,3 +29,22 @@ admission_info = {
 
     'graduate': "Bachelor's degree from a recognized university with a minimum CGPA of 3.00 GRE or GMAT scores (optional)",
 }
+
+lab_info ={
+    'lab':'There are 27 labs in Independent University, Bangladesh (IUB). The list of labs are as follows:Advanced Materials Processing Lab,Bioinformatics Lab, Chemistry Lab, Computer Vision Lab, Data Science Lab , Electronics Lab, Fab Lab , Mechanical Engineering Lab, Physics Lab, Robotics Lab, Software Engineering Lab, Biochemistry Lab , Microbiology Lab,Biotechnology Lab, Food Science and Technology Lab, Pharmacy Lab, Public Health Lab, Environmental Science Lab, Geography Lab, Geography Lab, Media Lab, Language Lab, Psychology Lab, Sociology Lab, Economics Lab, Finance Lab, Accounting Lab',
+    
+}
+
+school_info = {
+    'school':'Independent University, Bangladesh (IUB) has 5 schools:School of Business and Entrepreneurship (SBE) ,School of Engineering, Technology, and Sciences (SETS) ,School of Environment and Life Sciences (SELS), School of Liberal Arts and Social Sciences (SLASS) ,School of Pharmacy and Public Health (SPPH) ',
+
+    'sbe':'The School of Business and Entrepreneurship (SBE) at Independent University, Bangladesh (IUB) has 8 departments:Accounting,Economics,Finance,General Management,Human Resource Management,International Business,Management Information Systems,Marketing ',
+
+    'sets': 'The School of Engineering, Technology and Sciences (SETS) at Independent University, Bangladesh (IUB) has three departments. These are: Computer Science and Engineering (CSE), Electrical and Electronic Engineering (EEE), Physical Sciences (PS)',
+
+    'sels':'The School of SELS is the School of Environment and Life Sciences, which has two departments. These are:Department of Life Sciences,Department of Environmental Science and Management',
+
+    'slass':' the School of Liberal Arts and Social Sciences (SLASS) has five departments1. These are:English,Global Studies and Governance,Law,Media and Communication,Social Sciences and Humanities',
+
+    'spph':'the School of Pharmacy and Public Health (SPPH) at Independent University, Bangladesh (IUB) has two departments1. These are: Department of Pharmacy,Department of Public Health'
+}
