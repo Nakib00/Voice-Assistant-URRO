@@ -48,3 +48,7 @@ school_info = {
 
     'spph':'the School of Pharmacy and Public Health (SPPH) at Independent University, Bangladesh (IUB) has two departments1. These are: Department of Pharmacy,Department of Public Health'
 }
+
+bilding_info ={
+    'c':'BC Bilding is the mani bilding in IUB. it has three parts.Left, Right and Font side. Left side have all the office of univirsity. Font side have canteen and library. Right side have all class rooom and department.'
+}

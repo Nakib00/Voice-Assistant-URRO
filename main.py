@@ -3,7 +3,7 @@ import pyttsx3
 import datetime
 import pywhatkit
 import wikipedia
-from independent_data import club_info, depermant_info, admission_info, lab_info, school_info
+from independent_data import club_info, depermant_info, admission_info, lab_info, school_info,bilding_info
 
 
 listener = sr.Recognizer()
@@ -52,6 +52,8 @@ def run_urro():
         lab_handler(commend)
     elif 'school' in commend:
         school_handler(commend)
+    elif 'building' in commend:
+        bilding_handler(commend)
     elif 'stop' in commend:
         exit()
     else:
@@ -158,6 +160,12 @@ def school_handler(commend):
 def lab_handler(commend):
     if ('lab' and 'how') in commend:
         pt = lab_info['lab']
+        print(pt)
+        talk(pt)
+
+def bilding_handler(commend):
+    if ('where' or 'c') in commend:
+        pt = bilding_info['c']
         print(pt)
         talk(pt)
 
