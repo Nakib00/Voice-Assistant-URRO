@@ -36,7 +36,7 @@ lab_info ={
 }
 
 school_info = {
-    'school':'Independent University, Bangladesh (IUB) has 5 schools:School of Business and Entrepreneurship (SBE) ,School of Engineering, Technology, and Sciences (SETS) ,School of Environment and Life Sciences (SELS), School of Liberal Arts and Social Sciences (SLASS) ,School of Pharmacy and Public Health (SPPH) ',
+    'school':'Independent University, Bangladesh (IUB) has 5 schools: School of Business and Entrepreneurship (SBE) ,School of Engineering, Technology, and Sciences (SETS) ,School of Environment and Life Sciences (SELS), School of Liberal Arts and Social Sciences (SLASS) ,School of Pharmacy and Public Health (SPPH) ',
 
     'sbe':'The School of Business and Entrepreneurship (SBE) at Independent University, Bangladesh (IUB) has 8 departments:Accounting,Economics,Finance,General Management,Human Resource Management,International Business,Management Information Systems,Marketing ',
 

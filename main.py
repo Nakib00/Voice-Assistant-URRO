@@ -134,24 +134,24 @@ def school_handler(commend):
         pt = school_info['school']
         print(pt)
         talk(pt)
-    elif ('Pharmacy' or 'Public Health' or 'spph') in commend:
-        pt = school_info['spph']
-        print(pt)
-        talk(pt)
-    elif ('sbe' or 'business' or 'entrepreneurship'):
-        pt = school_info['sbe']
-        print(pt)
-        talk(pt)
-    elif ('sets' or 'engineering' or 'technology'):
+    elif 'engineering' in commend:
         pt = school_info['sets']
         print(pt)
         talk(pt)
-    elif ('sels' or 'environment' or 'life sciences'):
-        pt = school_info['sels']
+    elif ('business' or 'entrepreneurship') in commend:
+        pt = school_info['sbe']
         print(pt)
         talk(pt)
-    elif ('slass' or 'liberal' or 'art'):
+    elif ('pharmacy' or ('public' and 'health')) in commend:
+        pt = school_info['spph']
+        print(pt)
+        talk(pt)
+    elif (('social' and 'science') or ('aiberal' and 'art')) in commend:
         pt = school_info['slass']
+        print(pt)
+        talk(pt)
+    elif ('environment' or ('life' and 'science')) in commend:
+        pt = school_info['sels']
         print(pt)
         talk(pt)
 
