@@ -5,17 +5,18 @@ import pywhatkit
 import wikipedia
 from independent_data import club_info, depermant_info, admission_info, lab_info, school_info,bilding_info
 
-
+#Init
 listener = sr.Recognizer()
 urro = pyttsx3.init()
 voices = urro.getProperty('voices')
 urro.setProperty('voice',voices[1].id)
 
-
+#talk the assisttant 
 def talk(text):
     urro.say(text)
     urro.runAndWait()
 
+#commend take from voice
 def take_commend():
     commend = "" 
     try:
@@ -31,33 +32,6 @@ def take_commend():
     except:
         pass
     return commend
-
-def run_urro():
-    commend = take_commend()
-    if 'time' in commend:
-        time_handler()
-    elif 'play' in commend:
-        play_handler(commend)
-    elif 'tell me about' in commend:
-        wikipedia_handler(commend)
-    elif 'department' in commend:
-        department_handler(commend)
-    elif 'admission' in commend:
-        admission_handler(commend)
-    elif 'club' in commend:
-        club_handler(commend)
-    elif 'financial' in commend:
-        financial_handler(commend)
-    elif 'lab' in commend:
-        lab_handler(commend)
-    elif 'school' in commend:
-        school_handler(commend)
-    elif 'building' in commend:
-        bilding_handler(commend)
-    elif 'stop' in commend:
-        exit()
-    else:
-        unknown_handler()
 
 def time_handler():
     time = datetime.datetime.now().strftime('%H:%M %p')
@@ -174,5 +148,34 @@ def unknown_handler():
     print(pt)
     talk(pt)
 
+# Take the commend and call right handler function
+def run_urro():
+    commend = take_commend()
+    if 'time' in commend:
+        time_handler()
+    elif 'play' in commend:
+        play_handler(commend)
+    elif 'tell me about' in commend:
+        wikipedia_handler(commend)
+    elif 'department' in commend:
+        department_handler(commend)
+    elif 'admission' in commend:
+        admission_handler(commend)
+    elif 'club' in commend:
+        club_handler(commend)
+    elif 'financial' in commend:
+        financial_handler(commend)
+    elif 'lab' in commend:
+        lab_handler(commend)
+    elif 'school' in commend:
+        school_handler(commend)
+    elif 'building' in commend:
+        bilding_handler(commend)
+    elif 'stop' in commend:
+        exit()
+    else:
+        unknown_handler()
+
+# Loop run run_ueeo() function
 while True:
     run_urro()
