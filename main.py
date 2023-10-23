@@ -33,6 +33,7 @@ def take_commend():
         pass
     return commend
 
+# All handler function
 def time_handler():
     time = datetime.datetime.now().strftime('%H:%M %p')
     print(time)
