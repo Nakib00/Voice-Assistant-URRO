@@ -32,6 +32,12 @@ recognizer = sr.Recognizer()
 # Set the initial language for recognition
 current_language = 'en-US'
 
+# Define the admission information
+admission_info = {
+    'Undergraduate': "Admission Requirements,Combined GPA of 7 in SSC and HSC with a minimum GPA of 3 in each O'Level in minimum 5 subjects with a GPA of 2.50 and A'Level in 2 subjects with a minimum GPA of 2.00 International Baccalaureate or U.S. High School Diploma Other 12 years equivalent degree (must have the equivalence certificate from Ministry of Education)",
+    'graduate': "Bachelor's degree from a recognized university with a minimum CGPA of 3.00 GRE or GMAT scores (optional)",
+}
+
 def listen():
     """Capture and recognize speech, returning the recognized text."""
     global current_language
@@ -81,15 +87,17 @@ def get_chatgpt_response(user_input):
 # Set the initial rest position of the servo
 set_servo_rest_position()
 
-# Main loop
 while True:
     user_input = listen()
     if user_input:
-        chatgpt_reply = get_chatgpt_response(user_input)
-        if chatgpt_reply:
-            reply(chatgpt_reply, 'bn' if current_language == 'bn-BD' else 'en')
-            if current_language == 'bn-BD':
-                current_language = 'en-US'  # Switch back to English after processing Bengali command
-                print("Switched back to English language")
+        if user_input.lower() == 'admission':
+            reply(admission_info['Undergraduate'], 'en')  # Speak undergraduate admission info
         else:
-            print("No response from ChatGPT or an error occurred.")
+            chatgpt_reply = get_chatgpt_response(user_input)
+            if chatgpt_reply:
+                reply(chatgpt_reply, 'bn' if current_language == 'bn-BD' else 'en')
+                if current_language == 'bn-BD':
+                    current_language = 'en-US'  # Switch back to English after processing Bengali command
+                    print("Switched back to English language")
+            else:
+                print("No response from ChatGPT or an error occurred.")
