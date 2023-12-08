@@ -6,7 +6,60 @@ import os
 import datetime
 # from gpiozero import Servo
 from time import sleep
-from time import sleep
+import RPi.GPIO as GPIO
+import time
+
+# Define the GPIO pins connected to the L298N motor driver
+IN1 = 17  # Input 1
+IN2 = 18  # Input 2
+IN3 = 22  # Input 3
+IN4 = 23  # Input 4
+
+def setup():
+    # Set up GPIO mode and set warnings to false
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+
+    # Set up motor control pins as output
+    GPIO.setup(IN1, GPIO.OUT)
+    GPIO.setup(IN2, GPIO.OUT)
+    GPIO.setup(IN3, GPIO.OUT)
+    GPIO.setup(IN4, GPIO.OUT)
+
+def stop():
+    # Stop the motors
+    GPIO.output(IN1, GPIO.LOW)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.LOW)
+    GPIO.output(IN4, GPIO.LOW)
+
+def forward():
+    # Move the motors forward
+    GPIO.output(IN1, GPIO.HIGH)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.HIGH)
+    GPIO.output(IN4, GPIO.LOW)
+
+def backward():
+    # Move the motors backward
+    GPIO.output(IN1, GPIO.LOW)
+    GPIO.output(IN2, GPIO.HIGH)
+    GPIO.output(IN3, GPIO.LOW)
+    GPIO.output(IN4, GPIO.HIGH)
+
+def turn_left():
+    # Turn the motors to the left
+    GPIO.output(IN1, GPIO.LOW)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.HIGH)
+    GPIO.output(IN4, GPIO.LOW)
+
+def turn_right():
+    # Turn the motors to the right
+    GPIO.output(IN1, GPIO.HIGH)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.LOW)
+    GPIO.output(IN4, GPIO.LOW)
 
 # initialize
 urro = pyttsx3.init()
@@ -120,6 +173,34 @@ while True:
                 pt = bilding_info['bc']
                 print(pt)
                 talk(pt)
+                # Moving the robot code
+                setup()
+                # Move forward for 5 seconds
+                forward()
+                time.sleep(5) 
+                # Turn right for 1 seconds
+                turn_right()
+                time.sleep(1)
+                # Move forward for 5 seconds
+                forward()
+                time.sleep(5)
+                # Stop the motors
+                stop()
+                time.sleep(5)
+                talk('Here is BC bulding.')
+                # Turn right for 3 seconds
+                turn_right()
+                time.sleep(3)
+                # Move forward for 5 seconds
+                forward()
+                time.sleep(5) 
+                # Turn left for 1 seconds
+                turn_left()
+                time.sleep(1)
+                # Move forward for 5 seconds
+                forward()
+                time.sleep(5) 
+                
         elif 'dmk' in user_input.lower():
                 pt = bilding_info['dmk']
                 print(pt)
