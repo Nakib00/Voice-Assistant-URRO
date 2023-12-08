@@ -90,8 +90,6 @@ def take_commend():
         pass
     return commend
 
-# Set the initial rest position of the servo
-set_servo_rest_position()
 
 # All handler function
 def time_handler():
@@ -203,15 +201,6 @@ def bilding_handler(commend):
         pt = bilding_info['c']
         print(pt)
         talk(pt)
-        move_forward()
-        sleep(5)
-        stop_motors()
-        turn_left()
-        sleep(5)
-        stop_motors()
-        move_forward()
-        sleep(5)
-        stop_motors()
     
 
 def how_are_you_handler(commend):
