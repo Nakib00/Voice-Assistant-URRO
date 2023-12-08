@@ -3,9 +3,6 @@ import pyttsx3
 import datetime
 import pywhatkit
 import wikipedia
-from gpiozero import Servo,Motor, Robot
-from time import sleep
-import logging
 # from independent_data import club_info, depermant_info, admission_info, lab_info, school_info,bilding_info
 
 
@@ -64,54 +61,6 @@ school_info = {
 bilding_info ={
     'c':'Lats go with me. BC Bilding is the mani bilding in IUB. it has three parts.Left, Right and Font side. Left side have all the office of univirsity. Font side have canteen and library. Right side have all class rooom and department.'
 }
-
-servo = Servo(25)
-
-# Define servo control functions
-def set_servo_rest_position():
-    """Set the servo to its rest position."""
-    rest_position = 0  # Adjust this value based on your servo's rest position
-    servo.value = rest_position
-
-def servo_sweep():
-    """Perform a sweep with the servo."""
-    val = -1
-    for _ in range(6):
-        servo.value = val
-        sleep(0.2)
-        val = -val
-    set_servo_rest_position()  # Reset to rest position after the sweep
-
-# Setup basic logging
-logging.basicConfig(level=logging.INFO)
-# Define the motors connected to the L298N motor driver
-motor_left = Motor(forward=17, backward=18)
-motor_right = Motor(forward=22, backward=23)
-
-# Function to move forward
-def move_forward():
-    motor_left.forward()
-    motor_right.forward()
-
-# Function to move backward
-def move_backward():
-    motor_left.backward()
-    motor_right.backward()
-
-# Function to turn left
-def turn_left():
-    motor_left.backward()
-    motor_right.forward()
-
-# Function to turn right
-def turn_right():
-    motor_left.forward()
-    motor_right.backward()
-
-# Function to stop the motors
-def stop_motors():
-    motor_left.stop()
-    motor_right.stop()
 
 #Init
 listener = sr.Recognizer()

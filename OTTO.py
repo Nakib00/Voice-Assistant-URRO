@@ -1,4 +1,3 @@
-## say "hello" to enable bangla language each time.....
 import speech_recognition as sr
 import openai
 from gtts import gTTS
@@ -23,20 +22,14 @@ def servo_sweep():
         val = -val
     set_servo_rest_position()  # Reset to rest position after the sweep
 
-# Load OpenAI API key directly (not recommended for production use)
-openai.api_key = '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'
+# Load OpenAI API key from an environment variable (recommended for security)
+openai.api_key = os.getenv("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")
 
 # Initialize the speech recognizer
 recognizer = sr.Recognizer()
 
 # Set the initial language for recognition
 current_language = 'en-US'
-
-# Define the admission information
-admission_info = {
-    'Undergraduate': "Admission Requirements,Combined GPA of 7 in SSC and HSC with a minimum GPA of 3 in each O'Level in minimum 5 subjects with a GPA of 2.50 and A'Level in 2 subjects with a minimum GPA of 2.00 International Baccalaureate or U.S. High School Diploma Other 12 years equivalent degree (must have the equivalence certificate from Ministry of Education)",
-    'graduate': "Bachelor's degree from a recognized university with a minimum CGPA of 3.00 GRE or GMAT scores (optional)",
-}
 
 def listen():
     """Capture and recognize speech, returning the recognized text."""
@@ -90,14 +83,11 @@ set_servo_rest_position()
 while True:
     user_input = listen()
     if user_input:
-        if user_input.lower() == 'admission':
-            reply(admission_info['Undergraduate'], 'en')  # Speak undergraduate admission info
+        chatgpt_reply = get_chatgpt_response(user_input)
+        if chatgpt_reply:
+            reply(chatgpt_reply, 'bn' if current_language == 'bn-BD' else 'en')
+            if current_language == 'bn-BD':
+                current_language = 'en-US'  # Switch back to English after processing Bengali command
+                print("Switched back to English language")
         else:
-            chatgpt_reply = get_chatgpt_response(user_input)
-            if chatgpt_reply:
-                reply(chatgpt_reply, 'bn' if current_language == 'bn-BD' else 'en')
-                if current_language == 'bn-BD':
-                    current_language = 'en-US'  # Switch back to English after processing Bengali command
-                    print("Switched back to English language")
-            else:
-                print("No response from ChatGPT or an error occurred.")
+            print("No response from ChatGPT or an error occurred.")
