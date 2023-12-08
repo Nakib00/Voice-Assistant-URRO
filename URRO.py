@@ -6,6 +6,7 @@ import os
 import datetime
 # from gpiozero import Servo
 from time import sleep
+from time import sleep
 
 # initialize
 urro = pyttsx3.init()
