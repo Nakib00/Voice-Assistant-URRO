@@ -12,7 +12,7 @@ word_dict = {
     'turn right': 'Turning right...',
     'stop': 'Stopping...',
     'exit': 'Goodbye!',
-    'bc': 'Executing movement command...'
+    'bc': 'FUCK you.'
     # Add more commands as needed
 }
 
@@ -22,36 +22,60 @@ motor1B = 18
 motor2A = 22
 motor2B = 23
 
-def initialize_gpio():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(motor1A, GPIO.OUT)
-    GPIO.setup(motor1B, GPIO.OUT)
-    GPIO.setup(motor2A, GPIO.OUT)
-    GPIO.setup(motor2B, GPIO.OUT)
+# PWM GPIO pins
+enable1 = 27
+enable2 = 24
 
-def move_forward():
+# Initialize PWM for motor speed control
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(motor1A, GPIO.OUT)
+GPIO.setup(motor1B, GPIO.OUT)
+GPIO.setup(motor2A, GPIO.OUT)
+GPIO.setup(motor2B, GPIO.OUT)
+GPIO.setup(enable1, GPIO.OUT)
+GPIO.setup(enable2, GPIO.OUT)
+
+motor_pwm1 = GPIO.PWM(enable1, 100)  # 100 Hz frequency
+motor_pwm2 = GPIO.PWM(enable2, 100)  # 100 Hz frequency
+
+motor_pwm1.start(0)  # Start with 0% duty cycle
+motor_pwm2.start(0)  # Start with 0% duty cycle
+
+def move_forward(speed=50):
     GPIO.output(motor1A, GPIO.HIGH)
     GPIO.output(motor1B, GPIO.LOW)
     GPIO.output(motor2A, GPIO.HIGH)
     GPIO.output(motor2B, GPIO.LOW)
 
-def move_backward():
+    motor_pwm1.ChangeDutyCycle(speed)
+    motor_pwm2.ChangeDutyCycle(speed)
+
+def move_backward(speed=50):
     GPIO.output(motor1A, GPIO.LOW)
     GPIO.output(motor1B, GPIO.HIGH)
     GPIO.output(motor2A, GPIO.LOW)
     GPIO.output(motor2B, GPIO.HIGH)
 
-def turn_left():
+    motor_pwm1.ChangeDutyCycle(speed)
+    motor_pwm2.ChangeDutyCycle(speed)
+
+def turn_left(speed=50):
     GPIO.output(motor1A, GPIO.LOW)
     GPIO.output(motor1B, GPIO.HIGH)
     GPIO.output(motor2A, GPIO.HIGH)
     GPIO.output(motor2B, GPIO.LOW)
+    
+    motor_pwm1.ChangeDutyCycle(speed)
+    motor_pwm2.ChangeDutyCycle(speed)
 
-def turn_right():
+def turn_right(speed=50):
     GPIO.output(motor1A, GPIO.HIGH)
     GPIO.output(motor1B, GPIO.LOW)
     GPIO.output(motor2A, GPIO.LOW)
     GPIO.output(motor2B, GPIO.HIGH)
+    
+    motor_pwm1.ChangeDutyCycle(speed)
+    motor_pwm2.ChangeDutyCycle(speed)
 
 def stop_movement():
     GPIO.output(motor1A, GPIO.LOW)
@@ -86,14 +110,16 @@ def speak(text, rate=150):
 
 def execute_movement():
     speak(word_dict['bc'], rate=150)
-    move_forward()
-    time.sleep(10)  # Adjust the duration of movement as needed
+    move_backward(speed=50)
+    time.sleep(5)
+    turn_right(speed=50)
+    time.sleep(1)
+    move_forward(speed=50)
     stop_movement()
-    turn_right()
-
+    
+    
+    
 def main():
-    initialize_gpio()
-
     while True:
         command = recognize_speech()
 
@@ -109,6 +135,6 @@ def main():
                 speak(response, rate=100)
                 print(response)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
     GPIO.cleanup()  # Cleanup GPIO on program exit
