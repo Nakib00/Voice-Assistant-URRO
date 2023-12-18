@@ -46,8 +46,8 @@ enable1 = 27
 enable2 = 24
 
 # Servo GPIO pins
-servo_pin1 = 25
-servo_pin2 = 26
+servo_pin1 = 26
+servo_pin2 = 25
 
 # Initialize PWM for motor speed control
 GPIO.setmode(GPIO.BCM)
