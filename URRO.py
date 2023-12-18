@@ -45,6 +45,10 @@ motor2B = 23
 enable1 = 27
 enable2 = 24
 
+# Servo GPIO pins
+servo_pin1 = 25
+servo_pin2 = 26
+
 # Initialize PWM for motor speed control
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(motor1A, GPIO.OUT)
@@ -59,6 +63,15 @@ motor_pwm2 = GPIO.PWM(enable2, 100)  # 100 Hz frequency
 
 motor_pwm1.start(0)  # Start with 0% duty cycle
 motor_pwm2.start(0)  # Start with 0% duty cycle
+
+# Initialize PWM for servos
+GPIO.setup(servo_pin1, GPIO.OUT)
+GPIO.setup(servo_pin2, GPIO.OUT)
+servo_pwm1 = GPIO.PWM(servo_pin1, 50)  # 50 Hz frequency for servo 1
+servo_pwm2 = GPIO.PWM(servo_pin2, 50)  # 50 Hz frequency for servo 2
+
+servo_pwm1.start(7.5)  # Start at 90-degree position for servo 1
+servo_pwm2.start(7.5)  # Start at 90-degree position for servo 2
 
 def move_forward(speed=50):
     GPIO.output(motor1A, GPIO.HIGH)
@@ -102,10 +115,23 @@ def stop_movement():
     GPIO.output(motor2A, GPIO.LOW)
     GPIO.output(motor2B, GPIO.LOW)
 
+def move_servo1(angle):
+    duty_cycle = angle / 18.0 + 2.5
+    servo_pwm1.ChangeDutyCycle(duty_cycle)
+    time.sleep(1)  # Adjust the duration of servo movement
+
+def move_servo2(angle):
+    duty_cycle = angle / 18.0 + 2.5
+    servo_pwm2.ChangeDutyCycle(duty_cycle)
+    time.sleep(1)  # Adjust the duration of servo movement
+
+
 # Speech recognition functionality
 def recognize_speech():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
+        # call servo1 
+        move_servo1(45)
         print("Listening...")
         audio = recognizer.listen(source)
         try:
