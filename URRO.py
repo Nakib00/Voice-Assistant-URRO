@@ -3,6 +3,50 @@ import pyttsx3
 import time
 import datetime
 import wikipedia
+import RPi.GPIO as GPIO
+
+# Motor GPIO pins
+motor1A = 17
+motor1B = 18
+motor2A = 22
+motor2B = 23
+
+def initialize_gpio():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(motor1A, GPIO.OUT)
+    GPIO.setup(motor1B, GPIO.OUT)
+    GPIO.setup(motor2A, GPIO.OUT)
+    GPIO.setup(motor2B, GPIO.OUT)
+
+def move_forward():
+    GPIO.output(motor1A, GPIO.HIGH)
+    GPIO.output(motor1B, GPIO.LOW)
+    GPIO.output(motor2A, GPIO.HIGH)
+    GPIO.output(motor2B, GPIO.LOW)
+
+def move_backward():
+    GPIO.output(motor1A, GPIO.LOW)
+    GPIO.output(motor1B, GPIO.HIGH)
+    GPIO.output(motor2A, GPIO.LOW)
+    GPIO.output(motor2B, GPIO.HIGH)
+
+def turn_left():
+    GPIO.output(motor1A, GPIO.LOW)
+    GPIO.output(motor1B, GPIO.HIGH)
+    GPIO.output(motor2A, GPIO.HIGH)
+    GPIO.output(motor2B, GPIO.LOW)
+
+def turn_right():
+    GPIO.output(motor1A, GPIO.HIGH)
+    GPIO.output(motor1B, GPIO.LOW)
+    GPIO.output(motor2A, GPIO.LOW)
+    GPIO.output(motor2B, GPIO.HIGH)
+
+def stop_movement():
+    GPIO.output(motor1A, GPIO.LOW)
+    GPIO.output(motor1B, GPIO.LOW)
+    GPIO.output(motor2A, GPIO.LOW)
+    GPIO.output(motor2B, GPIO.LOW)
 
 # Datadase
 word_dict = {
@@ -65,13 +109,35 @@ def speak(text, rate=150):
 # Moving functionality for robot move for bulding
 def execute_movement_bc():
     speak(word_dict['bc'], rate=150)
-      # Adjust the duration of movement as needed
+    # Adjust the duration of movement as needed
+    move_forward()
+    time.sleep(10)  # Adjust the duration of movement as needed
+    stop_movement()
+    turn_right()
+    time.sleep(10)  # Adjust the duration of movement as needed
+    stop_movement()
+
+      
 def execute_movement_dmk():
     speak(word_dict['dmk'], rate=150)
     # Adjust the duration of movement as needed
+    move_forward()
+    time.sleep(10)  # Adjust the duration of movement as needed
+    stop_movement()
+    turn_right()
+    time.sleep(10)  # Adjust the duration of movement as needed
+    stop_movement()
+    
 def execute_movement_jublee():
     speak(word_dict['jublee'], rate=150)
     # Adjust the duration of movement as needed
+    move_forward()
+    time.sleep(10)  # Adjust the duration of movement as needed
+    stop_movement()
+    turn_right()
+    time.sleep(10)  # Adjust the duration of movement as needed
+    stop_movement()
+    
 def admission_handler():
     speak(word_dict['Undergraduate'], rate=150)
 def wikipedia_handler(command):
